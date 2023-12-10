@@ -11,8 +11,8 @@ export default class GameScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("ball", "../public/assets/ball.png");
-    this.load.image("paddle", "../public/assets/paddle.png");
+    this.load.image("ball", "../assets/ball.png");
+    this.load.image("paddle", "../assets/paddle.png");
   }
 
   create() {
@@ -60,6 +60,18 @@ export default class GameScene extends Phaser.Scene {
     this.player1.setVelocity(0);
     this.player2.setVelocity(0);
 
+    if (this.ball.body.x > this.player1.body.x) {
+      console.log("player 2 wins");
+      this.ball.setVelocityX(0);
+      this.ball.setVelocityY(0);
+    }
+
+    if (this.ball.body.x < this.player2.body.x) {
+      console.log("player 1 wins");
+      this.ball.setVelocityX(0);
+      this.ball.setVelocityY(0);
+    }
+
     if (this.cursors.up.isDown) {
       this.player1.body.setVelocityY(-350);
     }
@@ -79,20 +91,6 @@ export default class GameScene extends Phaser.Scene {
     }
     if (this.ball.body.velocity.y < -350) {
       this.ball.setVelocity(-350);
-    }
-
-    if (this.ball.body.x > this.player1.body.x) {
-      console.log("player 2 wins");
-      this.ball.setVelocityX(0);
-      this.ball.setVelocityY(0);
-      this.isGameStarted = false;
-    }
-
-    if (this.ball.body.x < this.player2.body.x) {
-      console.log("player 1 wins");
-      this.ball.setVelocityX(0);
-      this.isGameStarted = false;
-      this.ball.setVelocityY(0);
     }
   }
 }
