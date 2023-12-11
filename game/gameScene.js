@@ -1,6 +1,4 @@
 import Phaser from "phaser";
-import ballImage from "../assets/ball.png";
-import paddleImage from "../assets/paddle.png";
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -14,8 +12,8 @@ export default class GameScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("ball", ballImage);
-    this.load.image("paddle", paddleImage);
+    this.load.image("ball", "/PhaserPong/assets/ball.png");
+    this.load.image("paddle", "/PhaserPong/assets/paddle.png");
   }
 
   create() {
